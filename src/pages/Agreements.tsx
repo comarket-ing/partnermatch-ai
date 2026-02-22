@@ -6,8 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import AgreementStatusBadge from "@/components/AgreementStatusBadge";
 import AgreementCustomizeDialog from "@/components/AgreementCustomizeDialog";
+import TemplateManagerDialog from "@/components/TemplateManagerDialog";
 import {
-  agreementTemplates,
+  agreementTemplates as initialTemplates,
   agreements as initialAgreements,
   type AgreementTemplate,
   type Agreement,
@@ -23,9 +24,11 @@ const cardVariants = {
 };
 
 const Agreements = ({ userRole }: Props) => {
+  const [templates, setTemplates] = useState<AgreementTemplate[]>(initialTemplates);
   const [myAgreements, setMyAgreements] = useState<Agreement[]>(initialAgreements);
   const [selectedTemplate, setSelectedTemplate] = useState<AgreementTemplate | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [managerOpen, setManagerOpen] = useState(false);
   const [selectedAgreement, setSelectedAgreement] = useState<Agreement | null>(null);
 
   const handleUseTemplate = (tpl: AgreementTemplate) => {
@@ -61,12 +64,12 @@ const Agreements = ({ userRole }: Props) => {
                   <p className="text-xs text-muted-foreground">Add, edit or archive agreement templates</p>
                 </div>
               </div>
-              <Button variant="outline" size="sm">Open Manager</Button>
+              <Button variant="outline" size="sm" onClick={() => setManagerOpen(true)}>Open Manager</Button>
             </motion.div>
           )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {agreementTemplates.map((tpl, i) => (
+            {templates.map((tpl, i) => (
               <motion.div
                 key={tpl.id}
                 custom={i}
@@ -193,6 +196,14 @@ const Agreements = ({ userRole }: Props) => {
         open={dialogOpen}
         onOpenChange={setDialogOpen}
         onSave={handleSaveAgreement}
+      />
+
+      {/* Template Manager (admin) */}
+      <TemplateManagerDialog
+        open={managerOpen}
+        onOpenChange={setManagerOpen}
+        templates={templates}
+        onUpdate={setTemplates}
       />
     </div>
   );
