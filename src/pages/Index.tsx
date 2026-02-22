@@ -1,13 +1,38 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import AppLayout from "@/components/AppLayout";
+import Dashboard from "@/pages/Dashboard";
+import Discovery from "@/pages/Discovery";
+import Mapping from "@/pages/Mapping";
+import SettingsView from "@/pages/SettingsView";
 
 const Index = () => {
+  const [currentView, setCurrentView] = useState("dashboard");
+  const [userRole, setUserRole] = useState<"manager" | "admin">("manager");
+
+  const renderView = () => {
+    switch (currentView) {
+      case "dashboard":
+        return <Dashboard userRole={userRole} />;
+      case "discovery":
+        return <Discovery />;
+      case "mapping":
+        return <Mapping />;
+      case "settings":
+        return <SettingsView />;
+      default:
+        return <Dashboard userRole={userRole} />;
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <AppLayout
+      currentView={currentView}
+      onNavigate={setCurrentView}
+      userRole={userRole}
+      onRoleChange={setUserRole}
+    >
+      {renderView()}
+    </AppLayout>
   );
 };
 
