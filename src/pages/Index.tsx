@@ -3,6 +3,7 @@ import AppLayout from "@/components/AppLayout";
 import Dashboard from "@/pages/Dashboard";
 import Discovery from "@/pages/Discovery";
 import Mapping from "@/pages/Mapping";
+import Agreements from "@/pages/Agreements";
 import SettingsView from "@/pages/SettingsView";
 
 const Index = () => {
@@ -17,6 +18,8 @@ const Index = () => {
         return <Discovery />;
       case "mapping":
         return <Mapping />;
+      case "agreements":
+        return <Agreements userRole={userRole} />;
       case "settings":
         return <SettingsView />;
       default:

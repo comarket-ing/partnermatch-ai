@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LayoutDashboard, Search, Grid3X3, Settings, Sparkles } from "lucide-react";
+import { LayoutDashboard, Search, Grid3X3, Settings, Sparkles, FileText } from "lucide-react";
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -14,6 +14,7 @@ const navItems = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
   { id: "discovery", label: "Discovery", icon: Search },
   { id: "mapping", label: "Mapping", icon: Grid3X3 },
+  { id: "agreements", label: "Agreements", icon: FileText },
   { id: "settings", label: "Settings", icon: Settings },
 ];
 

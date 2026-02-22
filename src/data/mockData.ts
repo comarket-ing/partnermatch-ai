@@ -170,3 +170,125 @@ export const mappingData: MappingCell[] = [
   { userPopulation: "Open Deals", partnerPopulation: "Prospects", count: 4 },
   { userPopulation: "Open Deals", partnerPopulation: "Open Deals", count: 2 },
 ];
+
+// ── Agreement Templates & Agreements ──
+
+export type AgreementStatus = "draft" | "pending_review" | "sent" | "signed" | "expired";
+
+export interface AgreementTemplate {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  clausesCount: number;
+  lastUpdated: string;
+  popularity: number; // 0-100
+}
+
+export interface Agreement {
+  id: string;
+  templateId: string;
+  templateTitle: string;
+  partnerName: string;
+  title: string;
+  status: AgreementStatus;
+  createdAt: string;
+  sentAt?: string;
+  signedAt?: string;
+  expiresAt?: string;
+}
+
+export const agreementTemplates: AgreementTemplate[] = [
+  {
+    id: "tpl-1",
+    title: "Co-Webinar Partnership",
+    category: "Co-Webinar",
+    description: "Joint webinar hosting agreement covering promotion responsibilities, lead sharing, and content ownership.",
+    clausesCount: 12,
+    lastUpdated: "2025-12-10",
+    popularity: 94,
+  },
+  {
+    id: "tpl-2",
+    title: "Content Swap Agreement",
+    category: "Content Swap",
+    description: "Mutual guest-posting and content co-creation agreement with editorial guidelines and attribution rules.",
+    clausesCount: 9,
+    lastUpdated: "2025-11-28",
+    popularity: 78,
+  },
+  {
+    id: "tpl-3",
+    title: "Lead Sharing Framework",
+    category: "Lead Sharing",
+    description: "Bi-directional lead referral agreement with qualification criteria, SLAs, and revenue attribution model.",
+    clausesCount: 15,
+    lastUpdated: "2026-01-05",
+    popularity: 87,
+  },
+  {
+    id: "tpl-4",
+    title: "Joint Case Study",
+    category: "Co-Marketing",
+    description: "Agreement for co-producing a customer success story including approval workflows and distribution rights.",
+    clausesCount: 8,
+    lastUpdated: "2026-02-01",
+    popularity: 65,
+  },
+];
+
+export const agreements: Agreement[] = [
+  {
+    id: "agr-1",
+    templateId: "tpl-1",
+    templateTitle: "Co-Webinar Partnership",
+    partnerName: "DataForge Analytics",
+    title: "Q1 2026 Joint Webinar Series",
+    status: "signed",
+    createdAt: "2025-12-15",
+    sentAt: "2025-12-16",
+    signedAt: "2025-12-20",
+    expiresAt: "2026-06-30",
+  },
+  {
+    id: "agr-2",
+    templateId: "tpl-3",
+    templateTitle: "Lead Sharing Framework",
+    partnerName: "CloudSync Pro",
+    title: "Bi-Directional Lead Referral — CS×CM",
+    status: "sent",
+    createdAt: "2026-01-10",
+    sentAt: "2026-01-11",
+    expiresAt: "2026-07-10",
+  },
+  {
+    id: "agr-3",
+    templateId: "tpl-2",
+    templateTitle: "Content Swap Agreement",
+    partnerName: "RevOps Central",
+    title: "Blog & Newsletter Content Exchange",
+    status: "pending_review",
+    createdAt: "2026-02-01",
+  },
+  {
+    id: "agr-4",
+    templateId: "tpl-4",
+    templateTitle: "Joint Case Study",
+    partnerName: "SecureVault AI",
+    title: "Enterprise Security Case Study",
+    status: "draft",
+    createdAt: "2026-02-18",
+  },
+  {
+    id: "agr-5",
+    templateId: "tpl-1",
+    templateTitle: "Co-Webinar Partnership",
+    partnerName: "Onboard.ly",
+    title: "Onboarding Best Practices Webinar",
+    status: "expired",
+    createdAt: "2025-06-01",
+    sentAt: "2025-06-02",
+    signedAt: "2025-06-05",
+    expiresAt: "2025-12-01",
+  },
+];
