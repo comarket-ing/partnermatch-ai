@@ -67,19 +67,29 @@ const Dashboard = ({ userRole }: DashboardProps) => {
         <h2 className="text-lg font-semibold text-foreground">Quick Actions</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
-            { title: "Find New Partners", desc: "AI-powered partner discovery", color: "bg-primary text-primary-foreground" },
-            { title: "Review Overlaps", desc: "14 new account matches found", color: "bg-card text-foreground" },
+            { 
+              title: "Find New Partners", 
+              desc: "AI-powered partner discovery", 
+              className: "bg-primary text-primary-foreground shadow-lg shadow-primary/20",
+              iconClassName: "text-primary-foreground"
+            },
+            { 
+              title: "Review Overlaps", 
+              desc: "14 new account matches found", 
+              className: "glass text-foreground",
+              iconClassName: "text-muted-foreground"
+            },
           ].map((action) => (
             <button
               key={action.title}
-              className={`${action.color} rounded-2xl p-5 text-left glass transition-transform active:scale-[0.98] group`}
+              className={`${action.className} rounded-2xl p-5 text-left transition-transform active:scale-[0.98] group`}
             >
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-semibold text-sm">{action.title}</p>
-                  <p className="text-xs mt-0.5 opacity-70">{action.desc}</p>
+                  <p className="text-xs mt-0.5 opacity-80">{action.desc}</p>
                 </div>
-                <ArrowRight className="w-4 h-4 opacity-50 group-hover:translate-x-0.5 transition-transform" />
+                <ArrowRight className={`w-4 h-4 ${action.iconClassName} opacity-70 group-hover:translate-x-0.5 transition-transform group-hover:opacity-100`} />
               </div>
             </button>
           ))}
